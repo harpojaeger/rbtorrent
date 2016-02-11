@@ -9,20 +9,7 @@ class Integer
     end
     "#{n.round(2)} #{prefixes[c]}B"
   end
-  def human_readable_pwr
-n=self
-pwr = Math::log(n, 1024)
-
-prefixes = ['', 'K', 'M', 'G', 'T']
-pref = pwr.to_i
-
-factor=1024.0**pref
-
-size=(n/factor).round(2)
-
-
-"#{size} #{prefixes[pref]}B"
-end
+  gir
 end
 
 
