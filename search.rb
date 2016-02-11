@@ -22,7 +22,7 @@ class Integer
       n /= 1024.0
       c += 1
     end
-    return "#{n.round(2)} #{prefixes[c]}B"
+    "#{n.round(2)} #{prefixes[c]}B"
   end
 end
 
@@ -36,20 +36,18 @@ results['item'].each do |item|
 end
 p
 
-print "Download #"
-num=gets.chomp.to_i
+print 'Download #'
+num = gets.chomp.to_i
 selected = results['item'][num - 1]
 url = selected['enclosure']['url']
-name = selected['title']
 
 uri = URI.parse(url)
 filename = File.basename(uri.path)
-torrent=""
-uri.open(:allow_redirections => :safe){|f|
-f.each_line {|line| torrent += line}
-}
+torrent = ''
+uri.open(:allow_redirections => :safe) do |f|
+  f.each_line { |line| torrent += line }
+end
 
-
-f=File.new(filename,'w')
+f = File.new(filename, 'w')
 f.write(torrent)
 f.close
