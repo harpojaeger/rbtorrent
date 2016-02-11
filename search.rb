@@ -16,13 +16,12 @@ end
 class Integer
   def human_readable
     n = self
+    pwr = Math::log(n, 1024)
     prefixes = ['', 'K', 'M', 'G', 'T']
-    c = 0
-    until n / 1024.0 < 1.0
-      n /= 1024.0
-      c += 1
-    end
-    "#{n.round(2)} #{prefixes[c]}B"
+    pref = pwr.to_i
+    factor=1024.0**pref
+    size = (n/factor).round(2)
+    "#{size} #{prefixes[pref]}B"
   end
 end
 
